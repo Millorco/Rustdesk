@@ -3,6 +3,11 @@ services:
   hbbs:
     container_name: rustdesk-id
     image: rustdesk/rustdesk-server:latest
+    ports:
+      - 21115:21115
+      - 21116:21116
+      - 21116:21116/udp
+      - 21118:21118
     environment:
       - ALWAYS_USE_RELAY=Y
     command: hbbs
@@ -18,6 +23,9 @@ services:
     container_name: rustdesk-relay
     image: rustdesk/rustdesk-server:latest
     command: hbbr
+    ports:
+      - 21117:21117
+      - 21119:21119
     volumes:
       - ./data:/root
     network_mode: "host"
